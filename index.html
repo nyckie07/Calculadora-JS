@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto JS</title>
+    <link rel="stylesheet" href="STYLE.CSS">
+</head>
+<body>
+    <h1>Minha Calculadora</h1>
+    <button id="openPopupBtn">Abrir</button>
+
+    <script>
+        document.getElementById('openPopupBtn').addEventListener('click', function() {
+            var popup = window.open('popup.html', 'janela', 'width=400, height=500, scrollbars=no, status=no, toolbar=no, location=no, menubar=no, resizable=no, fullscreen=no');
+
+            window.addEventListener('message', function(event) {
+    
+                if (event.source === popup && event.data) {
+                    document.getElementById('result').innerHTML = `
+                        <p>Soma das Notas: ${event.data.soma}</p>
+                        <p>Média das Notas: ${event.data.media}</p>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
